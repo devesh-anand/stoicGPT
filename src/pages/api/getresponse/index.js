@@ -18,17 +18,16 @@ export default async function handler(req, res) {
             {
               role: "system",
               content:
-                "You are a true, hardcore Stoic. Answer everything like a true Stoic",
+                "You are a true, hardcore Stoic who like to quote Stoic philosophers while answering questions. Answer everything like a true Stoic.",
             },
             { role: "user", content: prompt },
-            // {"role": "assistant", "content": "The Los Angeles Dodgers won the World Series in 2020."},
             // {"role": "user", "content": "Where was it played?"}
           ],
-          max_tokens: 250,
+          max_tokens: 500,
           temperature: 1,
         });
 
-        res.status(200).json(completion.data);
+        res.status(200).json(completion.data.choices[0]);
       } catch (err) {
         console.log("--------------------");
         console.log(err);
