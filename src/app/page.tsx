@@ -1,6 +1,9 @@
 import { headers } from "next/headers";
 import Image from "next/image";
 import Form from "@/components/Form";
+import "react-toastify/dist/ReactToastify.css";
+import Github from "@/components/Github";
+import Footer from "@/components/Footer";
 
 const mainImg = [
   "https://pub-e8d136c018774bca8bf32491147abf4b.r2.dev/stoics/stoic-chads.png",
@@ -20,6 +23,7 @@ export default function Home() {
       className={`flex flex-col items-center h-full`}
       style={{ backgroundColor: `${bgs[randomNum]}` }}
     >
+      <Github />
       <h1 className="text-3xl font-semibold pt-4">Stoic GPT</h1>
       <Image
         src={mainImg[randomNum]}
@@ -28,6 +32,8 @@ export default function Home() {
         height={340}
       />
       <Form />
+      <hr className="w-2/3 md:w-1/2 border-gray-500" />
+      <Footer />
     </div>
   );
 }

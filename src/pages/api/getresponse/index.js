@@ -33,7 +33,7 @@ export default async function handler(req, res) {
         console.log(err);
         res.status(500).json({ error: err });
       }
-    else res.status(404).json({ error: "now allowed" });
+    else res.status(404).json({ error: "not allowed" });
   } else {
     res.status(404).json({ error: "not available" });
   }
