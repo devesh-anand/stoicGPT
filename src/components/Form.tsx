@@ -25,21 +25,29 @@ const Form = () => {
         }),
       });
 
-      let data: {
+      interface gptPrompt {
         message: {
           content: string;
           role: string;
         };
         index: number;
         finish_reason: string;
-      } = await res.json();
+      }
+      interface beError {
+        error: string;
+      }
+      let data: gptPrompt | beError = await res.json();
 
-      setResponse(data.message.content);
+      const typeGuard = (data: gptPrompt | beError): data is beError => {
+        return (data as beError).error !== undefined;
+      };
+      if (typeGuard(data)) throw new Error(data.error);
+      else setResponse(data.message.content);
       setLoading(false);
 
       scrollToResponse();
-    } catch (err) {
-      console.log(err);
+    } catch (err: Error | any) {
+      console.log(err.message);
       setLoading(false);
     }
   };
