@@ -40,6 +40,7 @@ const Form = () => {
       scrollToResponse();
     } catch (err) {
       console.log(err);
+      setLoading(false);
     }
   };
 
